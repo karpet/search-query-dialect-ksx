@@ -4,7 +4,7 @@ use warnings;
 use base qw( KinoSearch::Search::Query );
 use Carp;
 use Scalar::Util qw( blessed );
-use Search::Query::Dialect::KSx::Compiler;
+use Search::Query::Dialect::KSx::WildcardCompiler;
 
 our $VERSION = '0.14';
 
@@ -173,7 +173,7 @@ sub to_string {
 
 =head2 make_compiler
 
-Returns a Search::Query::Dialect::KSx::Compiler object.
+Returns a Search::Query::Dialect::KSx::WildcardCompiler object.
 
 =cut
 
@@ -182,7 +182,7 @@ sub make_compiler {
     my %args = @_;
     $args{parent}  = $self;
     $args{include} = 1;
-    return Search::Query::Dialect::KSx::Compiler->new(%args);
+    return Search::Query::Dialect::KSx::WildcardCompiler->new(%args);
 }
 
 1;

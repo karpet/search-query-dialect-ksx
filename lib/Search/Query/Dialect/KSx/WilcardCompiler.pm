@@ -1,9 +1,9 @@
-package Search::Query::Dialect::KSx::Compiler;
+package Search::Query::Dialect::KSx::WildcardCompiler;
 use strict;
 use warnings;
 use base qw( KinoSearch::Search::Compiler );
 use Carp;
-use Search::Query::Dialect::KSx::Scorer;
+use Search::Query::Dialect::KSx::WildcardScorer;
 use Data::Dump qw( dump );
 
 our $VERSION = '0.14';
@@ -65,7 +65,7 @@ sub new {
 
 =head2 make_matcher( I<args> )
 
-Returns a Search::Query::Dialect::KSx::Scorer object.
+Returns a Search::Query::Dialect::KSx::WildcardScorer object.
 
 =cut
 
@@ -159,7 +159,7 @@ sub make_matcher {
     # make final preparations
     $self->_perform_query_normalization($searchable);
 
-    return Search::Query::Dialect::KSx::Scorer->new(
+    return Search::Query::Dialect::KSx::WildcardScorer->new(
         posting_lists => \@posting_lists,
         compiler      => $self,
     );
