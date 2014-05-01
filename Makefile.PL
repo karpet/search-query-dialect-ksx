@@ -21,7 +21,8 @@ WriteMakefile(
     PL_FILES  => {},
     PREREQ_PM => {
         'Test::More'    => 0,
-        'Search::Query' => 0.19,
+        'Moo'           => 0,
+        'Search::Query' => '0.200',
         'KinoSearch'    => 0.31,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
@@ -31,12 +32,13 @@ WriteMakefile(
     (   $MM_Version <= 6.44 ? ()
         : ( META_MERGE => {
                 resources => {
-                    license  => 'http://dev.perl.org/licenses/',
-                    homepage => 'http://perl.peknet.com/wiki/SearchTools',
+                    license => 'http://dev.perl.org/licenses/',
+                    homepage =>
+                        'https://github.com/karpet/search-query-dialect-ksx',
                     bugtracker =>
                         'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Search-Query-Dialect-KSx',
                     repository =>
-                        'http://svn.peknet.com/perl/Search-Query-Dialect-KSx',
+                        'https://github.com/karpet/search-query-dialect-ksx',
                 },
             }
         )

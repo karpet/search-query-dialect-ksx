@@ -6,7 +6,7 @@ use Carp;
 use Search::Query::Dialect::KSx::WildcardScorer;
 use Data::Dump qw( dump );
 
-our $VERSION = '0.14';
+our $VERSION = '0.200';
 
 # inside out vars
 my (%include,           %searchable,        %idf,

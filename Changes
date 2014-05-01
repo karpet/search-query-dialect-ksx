@@ -1,5 +1,8 @@
 Revision history for Search-Query-Dialect-KSx
 
+0.200 1 May 2014
+ - port to Moo for Search::Query 0.300
+
 0.14 19 June 2011
  - bump dep on Search::Query to 0.19 for croak_on_error fix.
 
