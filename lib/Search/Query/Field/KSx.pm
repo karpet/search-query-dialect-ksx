@@ -1,12 +1,15 @@
 package Search::Query::Field::KSx;
-use strict;
-use warnings;
-use base qw( Search::Query::Field );
+use Moo;
+extends 'Search::Query::Field';
 use Scalar::Util qw( blessed );
 
-__PACKAGE__->mk_accessors(qw( type is_int analyzer ));
-
 our $VERSION = '0.14';
+
+use namespace::sweep;
+
+has 'type'   => ( is => 'rw', default => sub {'char'} );
+has 'is_int' => ( is => 'rw', default => sub {0} );
+has 'analyzer' => ( is => 'rw' );    # TODO isa check
 
 =head1 NAME
 
@@ -51,24 +54,6 @@ Set to a KinoSearch::Analysis::Analyzer-based object (optional).
 =back
 
 =cut
-
-sub init {
-    my $self = shift;
-    $self->SUPER::init(@_);
-
-    $self->{type} ||= 'char';
-
-    # numeric types
-    if ( !blessed( $self->{type} ) && $self->{type} =~ m/int|date|num/ ) {
-        $self->{is_int} = 1;
-    }
-
-    # text types
-    else {
-        $self->{is_int} = 0;
-    }
-
-}
 
 1;
 

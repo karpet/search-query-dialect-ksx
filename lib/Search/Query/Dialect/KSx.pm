@@ -1,7 +1,6 @@
 package Search::Query::Dialect::KSx;
-use strict;
-use warnings;
-use base qw( Search::Query::Dialect::Native );
+use Moo;
+extends 'Search::Query::Dialect::Native';
 use Carp;
 use Data::Dump qw( dump );
 use Scalar::Util qw( blessed );
@@ -19,14 +18,10 @@ use Search::Query::Dialect::KSx::WildcardQuery;
 
 our $VERSION = '0.14';
 
-__PACKAGE__->mk_accessors(
-    qw(
-        wildcard
-        fuzzify
-        ignore_order_in_proximity
-        allow_single_wildcards
-        )
-);
+has 'wildcard'                  => ( is => 'rw', default => sub {'*'} );
+has 'fuzzify'                   => ( is => 'rw', default => sub {0} );
+has 'ignore_order_in_proximity' => ( is => 'rw', default => sub {0} );
+has 'allow_single_wildcards'    => ( is => 'rw', default => sub {0} );
 
 =head1 NAME
 
@@ -52,9 +47,9 @@ methods are documented here.
 
 =cut
 
-=head2 init
+=head2 BUILD
 
-Overrides base method and sets SWISH-appropriate defaults.
+Overrides base method and sets appropriate defaults.
 Can take the following params, also available as standard attribute
 methods.
 
@@ -95,13 +90,8 @@ not match.
 
 =cut
 
-sub init {
+sub BUILD {
     my $self = shift;
-
-    $self->SUPER::init(@_);
-
-    #carp dump $self;
-    $self->{wildcard} = '*';
 
     if ( $self->{default_field} and !ref( $self->{default_field} ) ) {
         $self->{default_field} = [ $self->{default_field} ];
@@ -218,7 +208,7 @@ sub stringify_clause {
     }
 
     # make sure we have a field
-    my $default_field 
+    my $default_field
         = $self->default_field
         || $self->parser->default_field
         || undef;    # not empty string or 0
@@ -259,7 +249,7 @@ sub stringify_clause {
 
     my @buf;
 NAME: for my $name (@fields) {
-        my $field = $self->_get_field($name);
+        my $field = $self->get_field($name);
 
         if ( defined $field->callback ) {
             push( @buf, $field->callback->( $field, $op, $value ) );
@@ -467,7 +457,7 @@ sub _ks_clause {
 
     my @buf;
 FIELD: for my $name (@fields) {
-        my $field = $self->_get_field($name);
+        my $field = $self->get_field($name);
 
         if ( defined $field->callback ) {
             push( @buf, $field->callback->( $field, $op, $value ) );
