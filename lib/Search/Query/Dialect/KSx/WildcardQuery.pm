@@ -6,7 +6,7 @@ use Carp;
 use Scalar::Util qw( blessed );
 use Search::Query::Dialect::KSx::WildcardCompiler;
 
-our $VERSION = '0.200';
+our $VERSION = '0.201';
 
 =head1 NAME
 

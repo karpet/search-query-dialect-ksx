@@ -22,7 +22,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Test::More'    => 0,
         'Moo'           => 0,
-        'Search::Query' => '0.200',
+        'Search::Query' => '0.300',
         'KinoSearch'    => 0.31,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },

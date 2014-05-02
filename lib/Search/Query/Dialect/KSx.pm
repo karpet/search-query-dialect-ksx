@@ -16,7 +16,7 @@ use KSx::Search::ProximityQuery;
 use Search::Query::Dialect::KSx::NOTWildcardQuery;
 use Search::Query::Dialect::KSx::WildcardQuery;
 
-our $VERSION = '0.200';
+our $VERSION = '0.201';
 
 has 'wildcard'                  => ( is => 'rw', default => sub {'*'} );
 has 'fuzzify'                   => ( is => 'rw', default => sub {0} );

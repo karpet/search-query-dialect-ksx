@@ -3,7 +3,7 @@ use Moo;
 extends 'Search::Query::Field';
 use Scalar::Util qw( blessed );
 
-our $VERSION = '0.200';
+our $VERSION = '0.201';
 
 use namespace::sweep;
 
